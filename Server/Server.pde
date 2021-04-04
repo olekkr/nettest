@@ -4,19 +4,21 @@ UDP udp;
 
 boolean start = true;
 
-
+int port = 4206;
 
 void setup () {
-  udp = new UDP(this, 4206);
+  udp = new UDP(this, port, "192.168.0.27");
   udp.log(true);
   udp.listen(true);
+  println("listening to port ", port, "...");
   
-  
-  while (true) {
-    serve();
-  }
 }
+void draw(){}
 
-void serve(){
-  println(111);
+void receive(byte[] data){
+  println("received byte");
+  for(int i = 0; i < data.length; i++){
+    print(char(data[i]));
+  }
+  println();
 }
